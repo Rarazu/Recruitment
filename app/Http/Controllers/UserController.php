@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,6 +14,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required|min:10',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|same:password',
+        ]);
+
+        $user = new User();
+        // $user->{kolom_database} = $request->input('{input_name}');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->address = $request->input('address');
+        $user->password = $request->input('password');
+        $user->save();
+
+        return redirect(url('/user'));
     }
 }
