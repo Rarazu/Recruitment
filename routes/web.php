@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// membuka halaman form user
+Route::get('/user', [UserController::class, 'index']);
+
+// submit form user
+Route::post('/user/store', [UserController::class, 'store']);
+
+Route::get('/post', [PostController::class, 'index']);
+
+Route::post('/post/store', [PostController::class, 'store']);
