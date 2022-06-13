@@ -16,14 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('layouts.app');
-});
+})->name('index');
 
 /**
- * Membuka Halaman Form User
+ * User
  */
-Route::get('/user', [UserController::class, 'index']);
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 
-/**
- * Submit Form User
- */
-Route::post('/user/store', [UserController::class, 'store']);

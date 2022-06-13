@@ -9,7 +9,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('user');
+        $users = User::all();
+        return view('pages.user.index', compact('users'));
+    }
+
+    public function create()
+    {
+        return view('pages.user.create');
     }
 
     public function store(Request $request)

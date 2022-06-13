@@ -40,7 +40,7 @@
             @include('components.breadcrumbs')
             <div class="container-fluid">
                 <div class="animated fadeIn">
-                    HALO
+                    @yield('content')
                 </div>
             </div>
         </main>
