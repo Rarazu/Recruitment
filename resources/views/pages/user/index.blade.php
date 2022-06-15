@@ -15,12 +15,18 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>E-Mail</th>
+                        <th>Action</th>
                     </tr>
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>
+                                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

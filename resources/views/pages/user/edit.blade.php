@@ -1,18 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card card-accent-success">
+<div class="card card-accent-warning">
     <div class="card-header">
-        Tambah
+        Edit
     </div>
-    <form action="{{ route('user.store') }}" method="post">
+    <form action="{{ route('user.update', $user->id) }}" method="post">
         @csrf
+        @method('put')
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Nama</label>
-                        <input name="name" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Nama" value="{{ old('name') }}">
+                        <input name="name" class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Nama" value="{{ $user->name }}">
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -21,7 +22,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>E-Mail</label>
-                        <input name="email" class="form-control @error('email') is-invalid @enderror" type="email" placeholder="E-Mail" value="{{ old('email') }}">
+                        <input name="email" class="form-control @error('email') is-invalid @enderror" type="email" placeholder="E-Mail" value="{{ $user->email }}">
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -30,11 +31,14 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label>Alamat</label>
-                        <input name="address" class="form-control @error('address') is-invalid @enderror" type="text" placeholder="Alamat" value="{{ old('address') }}">
+                        <input name="address" class="form-control @error('address') is-invalid @enderror" type="text" placeholder="Alamat" value="{{ $user->address }}">
                         @error('address')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-warning" role="alert">Kosongi input Password dan Konfirmasi Password untuk tetap menggunakan password lama</div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -57,7 +61,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <button class="btn btn-success" type="submit">
+            <button class="btn btn-warning" type="submit">
                 Simpan
             </button>
         </div>

@@ -36,6 +36,34 @@ class UserController extends Controller
         $user->password = $request->input('password');
         $user->save();
 
-        return redirect(url('/user'));
+        return redirect()->route('user.index');
+    }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('pages.user.edit', compact('user'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required|min:10',
+            'password' => 'nullable|min:8',
+            'password_confirmation' => 'same:password',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->address = $request->input('address');
+        if ($request->input('password')) {
+            $user->password = $request->input('password');
+        }
+        $user->save();
+
+        return redirect()->route('user.index');
     }
 }
