@@ -9,7 +9,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('post');
+        $posts = Post::all();
+        return view('pages.post.index', compact('posts'));
     }
 
     public function store(Request $request)
@@ -27,5 +28,51 @@ class PostController extends Controller
         $post->description = $request->input('description');
         $post->author = $request->input('author');
         $post->save();
+
+        return redirect('/post');
+    }
+
+    public function create(Request $request)
+    {
+        return view('pages.post.create');
+    }
+
+    public function show(Post $post)
+    {
+        return view('pages.post.show', [
+            "post" => $post
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $post   = Post::whereId($id)->first();
+        return view('pages.post.edit', [
+            "post" => $post
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'author' => 'required'
+        ]);
+
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->author = $request->author;
+        $post->save();
+
+        return redirect('/post');
+    }
+
+    public function delete($id)
+    {
+        $post = Post::where('id', $id)
+            ->delete();
+        return redirect('/post')->with('success deleting');
     }
 }

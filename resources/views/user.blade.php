@@ -12,25 +12,6 @@
     crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="/">BiBlog</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/user">User</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/post">Post</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
    <div class="container">
        <div class="card m-3">
            <div class="card-header bg-info">

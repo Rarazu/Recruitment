@@ -1,48 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v2.1.15
+* @link https://coreui.io
+* Copyright (c) 2018 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-     crossorigin="anonymous">
+<head>
+    <base href="./">
+    @include('components.meta')
+    <title>BiView</title>
+    <!-- Icons-->
+    @include('components.css')
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-     {{-- Bootstrap Icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        // Shared ID
+        gtag('config', 'UA-118965717-3');
+        // Bootstrap ID
+        gtag('config', 'UA-118965717-5');
 
-    {{-- my style --}}
-    {{-- <link rel="stylesheet" href="css/style.css"> --}}
+    </script>
+</head>
 
-    <title>BiBlog</title>
-  </head>
-  <body>
-      {{-- Navbar --}}
-      <nav class="navbar navbar-expand-lg navbar-dark" style="background: #6698FF">
-        <div class="container">
-          <a class="navbar-brand" href="/">BiBlog</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/user">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/post">About</a>
-              </li>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+    @include('components.header')
+    <div class="app-body">
+        @include('components.sidebar')
+        <main class="main">
+            <!-- Breadcrumb-->
+            @include('components.breadcrumbs')
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    @yield('content')
+                </div>
+            </div>
+        </main>
+        <aside class="aside-menu">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">
+                        <i class="icon-list"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#messages" role="tab">
+                        <i class="icon-speech"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
+                        <i class="icon-settings"></i>
+                    </a>
+                </li>
             </ul>
-          </div>
+            <!-- Tab panes-->
+        </aside>
+    </div>
+    <footer class="app-footer">
+        <div>
+            <a href="https://coreui.io">CoreUI</a>
+            <span>&copy; 2018 creativeLabs.</span>
         </div>
-      </nav>
-      {{-- end Navbar --}}
+        <div class="ml-auto">
+            <span>Powered by</span>
+            <a href="https://coreui.io">CoreUI</a>
+        </div>
+    </footer>
+    <!-- CoreUI and necessary plugins-->
+    <script src="{{ asset('coreui-v2/vendors/jquery/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('coreui-v2/vendors/popper.js/js/popper.min.js') }}"></script>
+    <script src="{{ asset('coreui-v2/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('coreui-v2/vendors/pace-progress/js/pace.min.js') }}"></script>
+    <script src="{{ asset('coreui-v2/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('coreui-v2/vendors/@coreui/coreui/js/coreui.min.js') }}"></script>
+</body>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
-    crossorigin="anonymous"></script>
-
-  </body>
 </html>
