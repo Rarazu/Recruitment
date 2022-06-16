@@ -10,11 +10,12 @@ class Post extends Model
 {
     const EXCERPT_LENGTH = 50;
     use HasFactory;
-    protected $fillable = [
-        'title',
-        'description',
-        'author'
-    ];
+    // protected $fillable = [
+    //     'title',
+    //     'description',
+    //     'author'
+    // ];
+    protected $guarded = ['id'];
 
     public function user()
     {

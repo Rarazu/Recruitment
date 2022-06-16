@@ -16,8 +16,16 @@
                 @foreach ($posts as $post)
                 <div class="col-md-4">
                     <div class="card my-3">
-                        <img src="https://source.unsplash.com/400x200?{{ $post->title }}" 
-                        class="card-img-top" alt="Pict">
+                        @if ($post->image)
+                            <div style="max-height: 150px; overflow:hidden">
+                                <img src="{{ asset('storage/' . $post->image) }}" 
+                                alt="pict" class="card-img-top">
+                            </div>
+                        @else
+                            <img src="https://source.unsplash.com/400x200?{{ $post->title }}" 
+                            class="card-img-top" alt="Pict">                            
+                        @endif
+
                         <div class="card-body">
                             <h5 class="card-title">
                                 {{ $post->title }}

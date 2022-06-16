@@ -11,8 +11,16 @@
                         By : 
                             {{ $post->author }}
                     </h6>
-                    <img src="https://source.unsplash.com/1200x300?{{ $post->title }}" 
-                    alt="pict" class="img-fluid my-3">
+
+                    @if ($post->image)
+                        <div style="max-height: 350px; overflow:hidden">
+                            <img src="{{ asset('storage/' . $post->image) }}" 
+                            alt="pict" class="img-fluid mt-3" style="width:350px">
+                        </div>
+                    @else
+                        <img src="https://source.unsplash.com/400x200?{{ $post->title }}" 
+                        alt="pict" class="img-fluid my-3">
+                    @endif
         
                     <article class="my-3">
                         {{ $post->description }}

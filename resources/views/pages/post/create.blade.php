@@ -9,7 +9,8 @@
             </h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('post.store') }}" method="POST">
+            <form action="{{ route('post.store') }}" method="POST"
+            enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-12">
                     <div class="mb-3">
@@ -57,6 +58,37 @@
                             </div>
                         @enderror
                     </div>
+                    {{-- <div class="mb-3"> 
+                        <label for="author" class="form-label">
+                            Author :
+                        </label>
+                        <select class="form-control @error ('author') is-invalid @enderror" 
+                        name="author" value="{{ old('author') }}">
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach 
+                        </select>
+                        @error('author')
+                            <div class="alert alert-danger my-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div> --}}
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">
+                            Image : 
+                        </label>
+                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                        <input class="form-control p-1 @error ('image') is-invalid @enderror" 
+                        id="image" type="file" name="image" onchange="previewImage()">
+                        @error('image')
+                            <div class="alert alert-danger my-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-10">
@@ -72,4 +104,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    function previewImage() {
+        const image = document.querySelector('#image')
+        const imgPreview = document.querySelector('.img-preview')  
+        
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result
+        }
+    }
+</script>
 @endsection
