@@ -11,8 +11,17 @@ class UserController extends Controller
     // compact('name') === ['name' => $name]
     public function index()
     {
-        $users = User::all();
-        return view('pages.user.index', ['users' =>$users]);
+        $users = User::latest();
+
+        if (request('search')) {
+            $users->where('name', 'like', '%' . request('search') . '%')
+                 ->orWhere('email', 'like', '%' . request('search') . '%')
+                 ->orWhere('address', 'like', '%' . request('search') . '%');
+        }
+        // $users = User::all();
+        return view('pages.user.index', [
+            'users' =>$users->get()
+        ]);
     }
 
     public function store(Request $request)

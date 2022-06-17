@@ -1,6 +1,22 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="row">
+    <div class="col-md-12">
+        <form action="{{ route('post.index') }}">
+            <div class="input-group mb-3">
+                <span class="input-group-prepend">
+                  <button class="btn btn-info text-white" type="submit">
+                    <i class="fa fa-search"></i> Search</button>
+                </span>
+                <input class="form-control" type="text" 
+                name="search" placeholder="Search..."
+                value="{{ request('search') }}">
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="col-md-12">
     <div class="card card-accent-info">
         <div class="card-header">
@@ -58,4 +74,6 @@
         </div>
     </div>
 </div>
+
+{{ $posts->links() }}
 @endsection

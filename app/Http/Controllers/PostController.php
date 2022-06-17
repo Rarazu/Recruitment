@@ -11,8 +11,19 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
-        return view('pages.post.index', compact('posts'));
+        // dd(request('search'));
+        $post = Post::latest();
+
+        if (request('search')) {
+            $post->where('title', 'like', '%' . request('search') . '%')
+                 ->orWhere('description', 'like', '%' . request('search') . '%')
+                 ->orWhere('author', 'like', '%' . request('search') . '%');
+        }
+
+        // $posts = Post::all();
+        return view('pages.post.index', [
+            'posts' => $post->paginate(6)->withQueryString()
+        ]);
     }
 
     public function store(Request $request)
